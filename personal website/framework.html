@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的个人网站</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4F9E8C',
+                        secondary: '#83C5BE',
+                        accent: '#EDF6F9',
+                        dark: '#006D77',
+                        light: '#FFDDD2'
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .transition-custom {
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .bg-gradient-custom {
+                background: linear-gradient(120deg, var(--tw-gradient-stops));
+            }
+        }
+    </style>
+</head>
+<body class="font-inter bg-gray-50 text-gray-800 antialiased">
+    <!-- 导航栏 -->
+    <header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300">
+        <nav class="container mx-auto px-4 py-3 flex justify-between items-center bg-white/80 backdrop-blur-md rounded-b-xl shadow-sm">
+            <a href="#" class="text-primary font-bold text-2xl">你的名字</a>
+            
+            <!-- 桌面导航 -->
+            <div class="hidden md:flex space-x-8">
+                <a href="#about" class="text-gray-600 hover:text-primary transition-custom font-medium">关于我</a>
+                <a href="#skills" class="text-gray-600 hover:text-primary transition-custom font-medium">技能</a>
+                <a href="#projects" class="text-gray-600 hover:text-primary transition-custom font-medium">项目</a>
+                <a href="#blog" class="text-gray-600 hover:text-primary transition-custom font-medium">博客</a>
+                <a href="#contact" class="text-gray-600 hover:text-primary transition-custom font-medium">联系</a>
+            </div>
+            
+            <!-- 移动端菜单按钮 -->
+            <button id="menuBtn" class="md:hidden text-gray-600 focus:outline-none">
+                <i class="fa fa-bars text-xl"></i>
+            </button>
+        </nav>
+        
+        <!-- 移动端导航菜单 -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white shadow-lg rounded-b-xl mx-4 mt-1 overflow-hidden">
+            <div class="flex flex-col py-2">
+                <a href="#about" class="text-gray-600 hover:text-primary px-4 py-3 border-b border-gray-100">关于我</a>
+                <a href="#skills" class="text-gray-600 hover:text-primary px-4 py-3 border-b border-gray-100">技能</a>
+                <a href="#projects" class="text-gray-600 hover:text-primary px-4 py-3 border-b border-gray-100">项目</a>
+                <a href="#blog" class="text-gray-600 hover:text-primary px-4 py-3 border-b border-gray-100">博客</a>
+                <a href="#contact" class="text-gray-600 hover:text-primary px-4 py-3">联系</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-24 pb-16">
+        <!-- 英雄区域 -->
+        <section id="hero" class="container mx-auto px-4 py-16 md:py-24">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-[clamp(2.5rem,5vw,4rem)] font-bold leading-tight text-gray-900 mb-4">
+                        你好，我是<span class="text-primary">我的名字</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-xl">
+                        这职业或简短介绍
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#contact" class="bg-primary hover:bg-dark text-white font-medium py-3 px-6 rounded-full transition-custom shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                            联系我
+                        </a>
+                        <a href="#projects" class="bg-white hover:bg-gray-100 text-primary border border-primary font-medium py-3 px-6 rounded-full transition-custom shadow-md hover:shadow-lg transform hover:-translate-y-1">
+                            查看项目
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-8 border-white shadow-2xl">
+                        <img src="https://picsum.photos/seed/person/400/400" alt="你的照片" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 关于我 -->
+        <section id="about" class="bg-white py-16 md:py-24">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-gray-900 mb-4">关于我</h2>
+                    <div class="w-20 h-1 bg-primary mx-auto rounded-full"></div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="md:col-span-2 bg-gray-50 p-8 rounded-2xl shadow-md">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">个人简介</h3>
+                        <p class="text-gray-600 mb-4">
+                            你的个人简介
+                        </p>
+                        <p class="text-gray-600 mb-4">
+                            我擅长...
+                        </p>
+                        <p class="text-gray-600">
+                            除了技术工作...
+                        </p>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-8 rounded-2xl shadow-md">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">基本信息</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-center">
+                                <i class="fa fa-user text-primary mr-3 w-5"></i>
+                                <span>我的名字</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fa fa-birthday-cake text-primary mr-3 w-5"></i>
+                                <span>出生年月</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fa fa-map-marker text-primary mr-3 w-5"></i>
+                                <span>所在城市</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fa fa-envelope text-primary mr-3 w-5"></i>
+                                <span>my@email.com</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fa fa-phone text-primary mr-3 w-5"></i>
+                                <span>联系电话</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fa fa-globe text-primary mr-3 w-5"></i>
+                                <span>www.mywebsite.com</span>
+                            </li>
+                        </ul>
+                        
+                        <div class="mt-8">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-4">社交媒体</h3>
+                            <div class="flex space-x-4">
+                                <a href="#" class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-custom">
+                                    <i class="fa fa-github"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-custom">
+                                    <i class="fa fa-linkedin"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-custom">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-custom">
+                                    <i class="fa fa-instagram"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 技能 -->
+        <section id="skills" class="py-16 md:py-24 bg-accent/30">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-gray-900 mb-4">我的技能</h2>
+                    <div class="w-20 h-1 bg-primary mx-auto rounded-full"></div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white p-8 rounded-2xl shadow-md">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-6 flex items-center">
+                            <i class="fa fa-code text-primary mr-3"></i>
+                            技术技能
+                        </h3>
+                        
+                        <div class="space-y-6">
+                            <!-- 技能项 -->
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">HTML5 & CSS3</span>
+                                    <span>95%</span>
+                                </div>
+                                <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+                                    <div class="h-full bg-primary rounded-full" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">JavaScript</span>
+                                    <span>90%</span>
+                                </div>
+                                <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+                                    <div class="h-full bg-primary rounded-full" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">React.js</span>
+                                    <span>85%</span>
+                                </div>
+                                <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+                                    <div class="h-full bg-primary rounded-full" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">Vue.js</span>
+                                    <span>75%</span>
+                                </div>
+                                <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+                                    <div class="h-full bg-primary rounded-full" style="width: 75%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">Node.js</span>
+                                    <span>70%</span>
+                                </div>
+                                <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+                                    <div class="h-full bg-primary rounded-full" style="width: 70%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-8 rounded-2xl shadow-md">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-6 flex items-center">
+                            <i class="fa fa-star text-primary mr-3"></i>
+                            专业能力
+                        </h3>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-gray-50 p-4 rounded-xl hover:shadow-md transition-custom">
+                                <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-3">
+                                    <i class="fa fa-desktop"></i>
+                                </div>
+                                <h4 class="font-medium mb-2">前端开发</h4>
+                                <p class="text-sm text-gray-600">构建响应式、高性能的用户界面</p>
+                            </div>
+                            
+                            <div class="bg-gray-50 p-4 rounded-xl hover:shadow-md transition-custom">
+                                <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-3">
+                                    <i class="fa fa-mobile"></i>
+                                </div>
+                                <h4 class="font-medium mb-2">移动应用开发</h4>
+                                <p class="text-sm text-gray-600">开发跨平台移动应用</p>
+                            </div>
+                            
+                            <div class="bg-gray-50 p-4 rounded-xl hover:shadow-md transition-custom">
+                                <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-3">
+                                    <i class="fa fa-paint-brush"></i>
+                                </div>
+                                <h4 class="font-medium mb-2">UI/UX 设计</h4>
+                                <p class="text-sm text-gray-600">创建美观且用户友好的设计</p>
+                            </div>
+                            
+                            <div class="bg-gray-50 p-4 rounded-xl hover:shadow-md transition-custom">
+                                <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-3">
+                                    <i class="fa fa-cogs"></i>
+                                </div>
+                                <h4 class="font-medium mb-2">问题解决</h4>
+                                <p class="text-sm text-gray-600">高效解决技术难题</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 工具 -->
+                <div class="mt-12 bg-white p-8 rounded-2xl shadow-md">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-6 flex items-center">
+                        <i class="fa fa-tools text-primary mr-3"></i>
+                        开发工具
+                    </h3>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <div class="bg-gray-50 px-4 py-2 rounded-full flex items-center">
+                            <i class="fa fa-git text-primary mr-2"></i>
+                            <span>Git</span>
+                        </div>
+                        <div class="bg-gray-50 px-4 py-2 rounded-full flex items-center">
+                            <i class="fa fa-code text-primary mr-2"></i>
+                            <span>VS Code</span>
+                        </div>
+                        <div class="bg-gray-50 px-4 py-2 rounded-full flex items-center">
+                            <i class="fa fa-paint-brush text-primary mr-2"></i>
+                            <span>Figma</span>
+                        </div>
+                        <div class="bg-gray-50 px-4 py-2 rounded-full flex items-center">
+                            <i class="fa fa-database text-primary mr-2"></i>
+                            <span>MySQL</span>
+                        </div>
+                        <div class="bg-gray-50 px-4 py-2 rounded-full flex items-center">
+                            <i class="fa fa-cloud text-primary mr-2"></i>
+                            <span>Firebase</span>
+                        </div>
+                        <div class="bg-gray-50 px-4 py-2 rounded-full flex items-center">
+                            <i class="fa fa-terminal text-primary mr-2"></i>
+                            <span>Bash</span>
+                        </div>
+                        <div class="bg-gray-50 px-4 py-2 rounded-full flex items-center">
+                            <i class="fa fa-server text-primary mr-2"></i>
+                            <span>Linux</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 项目 -->
+        <section id="projects" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-gray-900 mb-4">我的项目</h2>
+                    <div class="w-20 h-1 bg-primary mx-auto rounded-full"></div>
+                </div>
+                
+                <!-- 项目筛选 -->
+                <div class="flex flex-wrap justify-center gap-4 mb-12">
+                    <button class="px-5 py-2 rounded-full bg-primary text-white font-medium">全部</button>
+                    <button class="px-5 py-2 rounded-full bg-gray-100 hover:bg-gray-200 font-medium transition-custom">前端</button>
+                    <button class="px-5 py-2 rounded-full bg-gray-100 hover:bg-gray-200 font-medium transition-custom">后端</button>
+                    <button class="px-5 py-2 rounded-full bg-gray-100 hover:bg-gray-200 font-medium transition-custom">全栈</button>
+                    <button class="px-5 py-2 rounded-full bg-gray-100 hover:bg-gray-200 font-medium transition-custom">移动应用</button>
+                </div>
+                
+                <!-- 项目卡片 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- 项目1 -->
+                    <div class="bg-gray-50 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-custom group">
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="https://picsum.photos/seed/project1/600/400" alt="项目图片" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                                <div class="p-6">
+                                    <div class="flex space-x-2 mb-2">
+                                        <span class="px-3 py-1 bg-primary/90 text-white text-xs rounded-full">React</span>
+                                        <span class="px-3 py-1 bg-white/90 text-gray-800 text-xs rounded-full">Node.js</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">项目标题 1</h3>
+                            <p class="text-gray-600 mb-4">这是一个描述项目的简短介绍，包括项目的主要功能和特点。</p>
+                            <div class="flex justify-between items-center">
+                                <a href="#" class="text-primary font-medium hover:underline flex items-center">
+                                    查看详情 <i class="fa fa-arrow-right ml-2"></i>
+                                </a>
+                                <div class="flex space-x-3">
+                                    <a href="#" class="text-gray-500 hover:text-primary transition-custom">
+                                        <i class="fa fa-github"></i>
+                                    </a>
+                                    <a href="#" class="text-gray-500 hover:text-primary transition-custom">
+                                        <i class="fa fa-external-link"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 项目2 -->
+                    <div class="bg-gray-50 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-custom group">
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="https://picsum.photos/seed/project2/600/400" alt="项目图片" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                                <div class="p-6">
+                                    <div class="flex space-x-2 mb-2">
+                                        <span class="px-3 py-1 bg-primary/90 text-white text-xs rounded-full">Vue</span>
+                                        <span class="px-3 py-1 bg-white/90 text-gray-800 text-xs rounded-full">MongoDB</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">项目标题 2</h3>
+                            <p class="text-gray-600 mb-4">这是一个描述项目的简短介绍，包括项目的主要功能和特点。</p>
+                            <div class="flex justify-between items-center">
+                                <a href="#" class="text-primary font-medium hover:underline flex items-center">
+                                    查看详情 <i class="fa fa-arrow-right ml-2"></i>
+                                </a>
+                                <div class="flex space-x-3">
+                                    <a href="#" class="text-gray-500 hover:text-primary transition-custom">
+                                        <i class="fa fa-github"></i>
+                                    </a>
+                                    <a href="#" class="text-gray-500 hover:text-primary transition-custom">
+                                        <i class="fa fa-external-link"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 项目3 -->
+                    <div class="bg-gray-50 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-custom group">
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="https://picsum.photos/seed/project3/600/400" alt="项目图片" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                                <div class="p-6">
+                                    <div class="flex space-x-2 mb-2">
+                                        <span class="px-3 py-1 bg-primary/90 text-white text-xs rounded-full">Flutter</span>
+                                        <span class="px-3 py-1 bg-white/90 text-gray-800 text-xs rounded-full">Firebase</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">项目标题 3</h3>
+                            <p class="text-gray-600 mb-4">这是一个描述项目的简短介绍，包括项目的主要功能和特点。</p>
+                            <div class="flex justify-between items-center">
+                                <a href="#" class="text-primary font-medium hover:underline flex items-center">
+                                    查看详情 <i class="fa fa-arrow-right ml-2"></i>
+                                </a>
+                                <div class="flex space-x-3">
+                                    <a href="#" class="text-gray-500 hover:text-primary transition-custom">
+                                        <i class="fa fa-github"></i>
+                                    </a>
+                                    <a href="#" class="text-gray-500 hover:text-primary transition-custom">
+                                        <i class="fa fa-external-link"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-12">
+                    <a href="#" class="inline-flex items-center justify-center bg-white hover:bg-gray-50 text-primary border border-primary font-medium py-3 px-8 rounded-full transition-custom shadow-md hover:shadow-lg transform hover:-translate-y-1">
+                        查看更多项目 <i class="fa fa-long-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 博客 -->
+        <section id="blog" class="py-16 md:py-24 bg-accent/30">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-gray-900 mb-4">我的博客</h2>
+                    <div class="w-20 h-1 bg-primary mx-auto rounded-full"></div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- 博客文章1 -->
+                    <article class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-custom group">
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="https://picsum.photos/seed/blog1/600/400" alt="博客图片" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            <div class="absolute top-4 left-4 bg-primary text-white text-xs font-medium px-3 py-1 rounded-full">
+                                前端开发
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center text-gray-500 text-sm mb-3">
+                                <i class="fa fa-calendar-o mr-2"></i>
+                                <span>2023年6月15日</span>
+                                <span class="mx-2">•</span>
+                                <span>5分钟阅读</span>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3 group-hover:text-primary transition-colors">博客文章标题</h3>
+                            <p class="text-gray-600 mb-4 line-clamp-3">博客文章的摘要内容</p>
+                            <a href="#" class="inline-flex items-center text-primary font-medium hover:underline">
+                                阅读更多 <i class="fa fa-long-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </article>
+                    
+                    <!-- 博客文章2 -->
+                    <article class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-custom group">
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="https://picsum.photos/seed/blog2/600/400" alt="博客图片" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            <div class="absolute top-4 left-4 bg-secondary text-white text-xs font-medium px-3 py-1 rounded-full">
+                                技术分享
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center text-gray-500 text-sm mb-3">
+                                <i class="fa fa-calendar-o mr-2"></i>
+                                <span>2023年5月28日</span>
+                                <span class="mx-2">•</span>
+                                <span>8分钟阅读</span>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3 group-hover:text-primary transition-colors">博客文章标题</h3>
+                            <p class="text-gray-600 mb-4 line-clamp-3">博客文章的摘要内容</p>
+                            <a href="#" class="inline-flex items-center text-primary font-medium hover:underline">
+                                阅读更多 <i class="fa fa-long-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </article>
+                    
+                    <!-- 博客文章3 -->
+                    <article class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-custom group">
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="https://picsum.photos/seed/blog3/600/400" alt="博客图片" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            <div class="absolute top-4 left-4 bg-dark text-white text-xs font-medium px-3 py-1 rounded-full">
+                                经验总结
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center text-gray-500 text-sm mb-3">
+                                <i class="fa fa-calendar-o mr-2"></i>
+                                <span>2023年4月10日</span>
+                                <span class="mx-2">•</span>
+                                <span>6分钟阅读</span>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3 group-hover:text-primary transition-colors">博客文章标题</h3>
+                            <p class="text-gray-600 mb-4 line-clamp-3">这是博客文章的摘要内容</p>
+                            <a href="#" class="inline-flex items-center text-primary font-medium hover:underline">
+                                阅读更多 <i class="fa fa-long-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </article>
+                </div>
+                
+                <div class="text-center mt-12">
+                    <a href="#" class="inline-flex items-center justify-center bg-white hover:bg-gray-50 text-primary border border-primary font-medium py-3 px-8 rounded-full transition-custom shadow-md hover:shadow-lg transform hover:-translate-y-1">
+                        查看所有文章 <i class="fa fa-long-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 联系 -->
+        <section id="contact" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-gray-900 mb-4">联系我</h2>
+                    <div class="w-20 h-1 bg-primary mx-auto rounded-full"></div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div>
+                        <div class="bg-gray-50 p-8 rounded-2xl shadow-md mb-8">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-6">联系方式</h3>
+                            
+                            <div class="space-y-6">
+                                <div class="flex items-start">
+                                    <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-4">
+                                        <i class="fa fa-map-marker"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800 mb-1">地址</h4>
+                                        <p class="text-gray-600">中国</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-4">
+                                        <i class="fa fa-envelope"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800 mb-1">邮箱</h4>
+                                        <p class="text-gray-600">my@email.com</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-4">
+                                        <i class="fa fa-phone"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800 mb-1">电话</h4>
+                                        <p class="text-gray-600">181...</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-4">
+                                        <i class="fa fa-clock-o"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800 mb-1">工作时间</h4>
+                                        <p class="text-gray-600">周一至周五: 9:00 - 18:00</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-8 rounded-2xl shadow-md">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-6">关注我</h3>
+                            
+                            <div class="grid grid-cols-2 gap-4">
+                                <a href="#" class="bg-white p-4 rounded-xl flex items-center hover:shadow-md transition-custom">
+                                    <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-3">
+                                        <i class="fa fa-github"></i>
+                                    </div>
+                                    <span>GitHub</span>
+                                </a>
+                                
+                                <a href="#" class="bg-white p-4 rounded-xl flex items-center hover:shadow-md transition-custom">
+                                    <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-3">
+                                        <i class="fa fa-linkedin"></i>
+                                    </div>
+                                    <span>LinkedIn</span>
+                                </a>
+                                
+                                <a href="#" class="bg-white p-4 rounded-xl flex items-center hover:shadow-md transition-custom">
+                                    <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-3">
+                                        <i class="fa fa-twitter"></i>
+                                    </div>
+                                    <span>Twitter</span>
+                                </a>
+                                
+                                <a href="#" class="bg-white p-4 rounded-xl flex items-center hover:shadow-md transition-custom">
+                                    <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-3">
+                                        <i class="fa fa-instagram"></i>
+                                    </div>
+                                    <span>Instagram</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-8 rounded-2xl shadow-md">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-6">发送消息</h3>
+                        
+                        <form id="contactForm" class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">姓名</label>
+                                    <input type="text" id="name" name="name" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-custom" placeholder="请输入您的姓名">
+                                </div>
+                                
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">邮箱</label>
+                                    <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-custom" placeholder="请输入您的邮箱">
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">主题</label>
+                                <input type="text" id="subject" name="subject" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-custom" placeholder="请输入消息主题">
+                            </div>
+                            
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-700 mb-1">消息</label>
+                                <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-custom resize-none" placeholder="请输入您的消息内容"></textarea>
+                            </div>
+                            
+                            <div>
+                                <button type="submit" class="w-full bg-primary hover:bg-dark text-white font-medium py-3 px-6 rounded-lg transition-custom shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                                    发送消息
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="md:col-span-2">
+                    <h3 class="text-xl font-bold mb-4">我的名字</h3>
+                    <p class="text-gray-400 mb-6 max-w-md">简短介绍或网站描述</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-white transition-custom">
+                            <i class="fa fa-github"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-white transition-custom">
+                            <i class="fa fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-white transition-custom">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-white transition-custom">
+                            <i class="fa fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">快速链接</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition-custom">关于我</a></li>
+                        <li><a href="#skills" class="text-gray-400 hover:text-white transition-custom">技能</a></li>
+                        <li><a href="#projects" class="text-gray-400 hover:text-white transition-custom">项目</a></li>
+                        <li><a href="#blog" class="text-gray-400 hover:text-white transition-custom">博客</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-custom">联系</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">联系方式</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fa fa-map-marker text-primary mt-1 mr-3"></i>
+                            <span class="text-gray-400">中国</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-envelope text-primary mt-1 mr-3"></i>
